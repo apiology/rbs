@@ -167,7 +167,7 @@ module Gem
     # <!-- rdoc-file=lib/rubygems/errors.rb -->
     # Name of gem
     #
-    attr_accessor name: untyped
+    attr_accessor name: String
 
     # <!-- rdoc-file=lib/rubygems/errors.rb -->
     # Version requirement of gem
@@ -214,7 +214,7 @@ module Gem
   class MissingSpecVersionError < MissingSpecError
     @specs: untyped
 
-    attr_reader specs: untyped
+    attr_reader specs: Enumerable[Gem::Specification]
 
     # <!--
     #   rdoc-file=lib/rubygems/errors.rb

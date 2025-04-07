@@ -210,7 +210,7 @@ class Gem::Specification < Gem::BasicSpecification
   #     spec.files += Dir['[A-Z]*']
   #     spec.files.reject! { |fn| fn.include? "CVS" }
   #
-  def files: () -> untyped
+  def files: () -> Enumerable[String]
 
   # <!--
   #   rdoc-file=lib/rubygems/specification.rb
@@ -1221,7 +1221,7 @@ class Gem::Specification < Gem::BasicSpecification
   # Use #add_dependency or #add_development_dependency to add dependencies to a
   # gem.
   #
-  def dependencies: () -> untyped
+  def dependencies: () -> Array[Gem::Dependency]
 
   # <!--
   #   rdoc-file=lib/rubygems/specification.rb
@@ -1256,7 +1256,7 @@ class Gem::Specification < Gem::BasicSpecification
   # -->
   # List of dependencies that are used for development
   #
-  def development_dependencies: () -> untyped
+  def development_dependencies: () -> Array[Gem::Dependency]
 
   # <!--
   #   rdoc-file=lib/rubygems/specification.rb

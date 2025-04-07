@@ -178,7 +178,7 @@ class Gem::BasicSpecification
   # -->
   # Name of the gem
   #
-  def name: () -> untyped
+  def name: () -> String
 
   # <!--
   #   rdoc-file=lib/rubygems/basic_specification.rb

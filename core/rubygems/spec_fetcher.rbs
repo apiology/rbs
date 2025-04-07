@@ -61,7 +61,7 @@ class Gem::SpecFetcher
   #
   # If `matching_platform` is false, gems for all platforms are returned.
   #
-  def search_for_dependency: (untyped dependency, ?bool matching_platform) -> ::Array[untyped]
+  def search_for_dependency: (untyped dependency, ?bool matching_platform) -> [::Array[[Gem::Dependency, untyped]], ::Array[untyped]]
 
   # <!--
   #   rdoc-file=lib/rubygems/spec_fetcher.rb
