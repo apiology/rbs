@@ -259,6 +259,8 @@ module RBS
 
       def initialize: (name: TypeName, args: Array[t], location: loc?) -> void
 
+      attr_reader name: TypeName
+
       attr_reader location: loc?
 
       include _TypeBase
