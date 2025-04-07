@@ -140,6 +140,8 @@ module RBS
       class Include < Base
         include Mixin
         include _ToJson
+
+        attr_reader name: TypeName
       end
 
       class Extend < Base
