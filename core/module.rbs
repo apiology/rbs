@@ -731,8 +731,8 @@ class Module < Object
   #     I'm Dino!
   #     #<B:0x401b39e8>
   #
-  def define_method: (interned symbol, ^() [self: self] -> untyped | Method | UnboundMethod method) -> Symbol
-                   | (interned symbol) { () [self: self] -> untyped } -> Symbol
+  def define_method: (interned symbol, ^(?) [self: top] -> untyped | Method | UnboundMethod method) -> Symbol
+                   | (interned symbol) { (?) [self: top] -> untyped } -> Symbol
 
   # <!--
   #   rdoc-file=object.c
@@ -1699,6 +1699,6 @@ class Module < Object
   def attr: (*interned arg0) -> Array[Symbol]
 
   # A previous incarnation of `interned` for backward-compatibility (see #1499)
-  %a{steep:deprecated}
+  %a{deprecated: Use `interned`}
   type id = interned
 end

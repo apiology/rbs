@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 3.9.0 (2025-03-18)
+
+### Miscellaneous
+
+* Update steep ([#2328](https://github.com/ruby/rbs/pull/2328))
+
+## 3.9.0.pre.2 (2025-03-14)
+
+### Signature updates
+
+* `Hash.new` type ([#2323](https://github.com/ruby/rbs/pull/2323))
+* `Module#define_method` ([#2325](https://github.com/ruby/rbs/pull/2325))
+* `Object#define_singleton_method` ([#2324](https://github.com/ruby/rbs/pull/2324))
+
+### Language updates
+
+* Fix `define_method` method block self type ([#2325](https://github.com/ruby/rbs/pull/2325))
+
 ## 3.9.0.pre.1 (2025-03-11)
 
 ### Signature updates

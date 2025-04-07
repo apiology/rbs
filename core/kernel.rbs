@@ -1729,7 +1729,7 @@ module Kernel : BasicObject
   def self?.sleep: (?nil) -> bot
                  | (Time::_Timeout duration) -> Integer
 
-  %a{steep:deprecated}
+  %a{deprecated}
   interface _Divmod
     def divmod: (Numeric) -> [ Numeric, Numeric ]
   end
@@ -2297,7 +2297,7 @@ module Kernel : BasicObject
   #     chris.greet("Hi") #=> "Hi, I'm Chris!"
   #
   def define_singleton_method: (interned name, Method | UnboundMethod | Proc method) -> Symbol
-                             | (interned name) { (?) -> untyped } -> Symbol
+                             | (interned name) { (?) [self: self] -> untyped } -> Symbol
 
   # <!--
   #   rdoc-file=io.c
