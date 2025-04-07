@@ -164,6 +164,15 @@ module Gem
   # activated gems or that RubyGems is otherwise unable to activate.
   #
   class LoadError < ::LoadError
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # Name of gem
+    #
+    attr_accessor name: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # Version requirement of gem
+    #
+    attr_accessor requirement: untyped
   end
 
   # <!-- rdoc-file=lib/rubygems/errors.rb -->
@@ -171,6 +180,185 @@ module Gem
   # system.  Instead of rescuing from this class, make sure to rescue from the
   # superclass Gem::LoadError to catch all types of load errors.
   #
-  class MissingSpecError
+  class MissingSpecError < Gem::LoadError
+    @name: untyped
+
+    @requirement: untyped
+
+    @extra_message: untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - new(name, requirement, extra_message=nil)
+    # -->
+    #
+    def initialize: (untyped name, untyped requirement, ?untyped? extra_message) -> void
+
+    def message: () -> untyped
+
+    private
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - build_message()
+    # -->
+    #
+    def build_message: () -> ::String
+  end
+
+  # <!-- rdoc-file=lib/rubygems/errors.rb -->
+  # Raised when trying to activate a gem, and the gem exists on the system, but
+  # not the requested version. Instead of rescuing from this class, make sure to
+  # rescue from the superclass Gem::LoadError to catch all types of load errors.
+  #
+  class MissingSpecVersionError < MissingSpecError
+    @specs: untyped
+
+    attr_reader specs: untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - new(name, requirement, specs)
+    # -->
+    #
+    def initialize: (untyped name, untyped requirement, untyped specs) -> void
+
+    private
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - build_message()
+    # -->
+    #
+    def build_message: () -> ::String
+  end
+
+  # <!-- rdoc-file=lib/rubygems/errors.rb -->
+  # Raised when there are conflicting gem specs loaded
+  #
+  class ConflictError < LoadError
+    @target: untyped
+
+    @conflicts: untyped
+
+    @name: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # A Hash mapping conflicting specifications to the dependencies that caused the
+    # conflict
+    #
+    attr_reader conflicts: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # The specification that had the conflict
+    #
+    attr_reader target: untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - new(target, conflicts)
+    # -->
+    #
+    def initialize: (untyped target, untyped conflicts) -> void
+  end
+
+  class ErrorReason
+  end
+
+  # <!-- rdoc-file=lib/rubygems/errors.rb -->
+  # Generated when trying to lookup a gem to indicate that the gem was found, but
+  # that it isn't usable on the current platform.
+  #
+  # fetch and install read these and report them to the user to aid in figuring
+  # out why a gem couldn't be installed.
+  #
+  class PlatformMismatch < ErrorReason
+    @name: untyped
+
+    @version: untyped
+
+    @platforms: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # the name of the gem
+    #
+    attr_reader name: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # the version
+    #
+    attr_reader version: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # The platforms that are mismatched
+    #
+    attr_reader platforms: untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - new(name, version)
+    # -->
+    #
+    def initialize: (untyped name, untyped version) -> void
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - add_platform(platform)
+    # -->
+    # append a platform to the list of mismatched platforms.
+    #
+    # Platforms are added via this instead of injected via the constructor so that
+    # we can loop over a list of mismatches and just add them rather than perform
+    # some kind of calculation mismatch summary before creation.
+    #
+    def add_platform: (untyped platform) -> untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - wordy()
+    # -->
+    # A wordy description of the error.
+    #
+    def wordy: () -> untyped
+  end
+
+  # <!-- rdoc-file=lib/rubygems/errors.rb -->
+  # An error that indicates we weren't able to fetch some data from a source
+  #
+  class SourceFetchProblem < ErrorReason
+    @source: untyped
+
+    @error: untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - new(source, error)
+    # -->
+    # Creates a new SourceFetchProblem for the given `source` and `error`.
+    #
+    def initialize: (untyped source, untyped error) -> void
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # The source that had the fetch problem.
+    #
+    attr_reader source: untyped
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # The fetch error which is an Exception subclass.
+    #
+    attr_reader error: untyped
+
+    # <!--
+    #   rdoc-file=lib/rubygems/errors.rb
+    #   - wordy()
+    # -->
+    # An English description of the error.
+    #
+    def wordy: () -> ::String
+
+    # <!-- rdoc-file=lib/rubygems/errors.rb -->
+    # The fetch error which is an Exception subclass.
+    #
+    alias exception error
   end
 end
