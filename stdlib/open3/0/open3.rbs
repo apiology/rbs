@@ -143,7 +143,7 @@ module Open3
   #     Open3.capture2('echo', 'hello', 'world')
   #     # => ["hello world\n", #<Process::Status: pid 2326299 exit 0>]
   #
-  def self.capture2: (?Hash[String, String] env, *String cmds) -> [IO, Process::Status]
+  def self.capture2: (?Hash[String, String] env, *String cmds) -> [String, Process::Status]
 
   # <!--
   #   rdoc-file=lib/open3.rb
@@ -240,7 +240,7 @@ module Open3
   #     Open3.capture2e('echo', 'hello', 'world')
   #     # => ["hello world\n", #<Process::Status: pid 2371894 exit 0>]
   #
-  def self.capture2e: (?Hash[String, String] env, *String cmds) -> [IO, Process::Status]
+  def self.capture2e: (?Hash[String, String] env, *String cmds) -> [String, Process::Status]
 
   # <!--
   #   rdoc-file=lib/open3.rb
@@ -337,7 +337,7 @@ module Open3
   #     Open3.capture3('echo', 'hello', 'world')
   #     # => ["hello world\n", "", #<Process::Status: pid 2282372 exit 0>]
   #
-  def self.capture3: (?Hash[String, String] env, *String cmds) -> [IO, IO, Process::Status]
+  def self.capture3: (?Hash[String, String] env, *String cmds) -> [String, String, Process::Status]
 
   # <!--
   #   rdoc-file=lib/open3.rb
