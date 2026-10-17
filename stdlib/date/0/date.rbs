@@ -732,7 +732,7 @@ class Date
   #     DateTime.jd(0,12) + DateTime.new(2001,2,3).ajd
   #                               #=> #<DateTime: 2001-02-03T00:00:00+00:00 ...>
   #
-  def +: (Numeric & _ToR other) -> Date
+  def +: (Numeric & _ToR other) -> self
 
   # <!--
   #   rdoc-file=ext/date/date_core.c
@@ -751,7 +751,7 @@ class Date
   #     DateTime.new(2001,2,3) - DateTime.new(2001,2,2,12)
   #                              #=> (1/2)
   #
-  def -: (Numeric & _ToR other) -> Date
+  def -: (Numeric & _ToR other) -> self
        | (Date other) -> Rational
 
   # <!--

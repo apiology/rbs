@@ -196,6 +196,24 @@ class DateTimeTest < Test::Unit::TestCase
   library "date"
   testing "::DateTime"
 
+  def test_plus
+    assert_send_type  "(::Integer other) -> ::DateTime",
+                      DateTime.new, :+, 1
+    assert_send_type  "(::Rational other) -> ::DateTime",
+                      DateTime.new, :+, Rational(1, 2)
+  end
+
+  def test_minus
+    assert_send_type  "(::Integer other) -> ::DateTime",
+                      DateTime.new, :-, 1
+    assert_send_type  "(::Rational other) -> ::DateTime",
+                      DateTime.new, :-, Rational(1, 2)
+    assert_send_type  "(::DateTime other) -> ::Rational",
+                      DateTime.new, :-, DateTime.new
+    assert_send_type  "(::Date other) -> ::Rational",
+                      DateTime.new, :-, Date.new
+  end
+
   def test_to_s
     assert_send_type  "() -> ::String",
                       DateTime.new, :to_s
